@@ -1,0 +1,165 @@
+/* pages/canvasList/canvasList.wxss */
+page{
+  font-size: 24rpx;
+  color: #333;
+  font-family: sans-serif;
+}
+.canvasBox{
+  height: 90vh;
+  position: relative;
+  z-index: 1;
+}
+.tempCanvas{
+  position:absolute;
+  left:-999999px;
+  width: 100%;
+  height: 90vh;
+}
+.hideInput{
+  position:absolute;
+  left:-999999px;
+}
+.showCanvas{
+  position: relative;
+  height: 100%;
+}
+.showCanvas image{
+  position: absolute;
+}
+.myCanvas{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tarbar{
+  position: relative;
+  height: 10vh;
+  border-top:1px solid #ccc;
+  box-sizing: border-box;
+  z-index: 9;
+  background: #fff;
+  width: 750rpx;
+}
+.tarbarBox{
+  display: flex;
+  width: 1500rpx;
+  height: 100%;
+}
+.tarbar .tarbarItem{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.tarbar .tarbarItem image{
+  width: 48rpx;
+}
+
+@keyframes toolbar
+{
+  0%   {bottom: -10vh;}
+  100% {bottom:10vh;}
+}
+.toolbar-top{
+  width:100%;
+  height:200rpx;
+  position: absolute;
+  left: 0;
+  z-index: 999;
+  bottom: 10vh;
+  animation-name:toolbar;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  overflow: hidden;
+  background: #f4f4f4;
+  box-shadow: 0 -10rpx 10rpx rgba(0,0,0,0.1);
+}
+.toolbar-width{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.slider-box{
+  width:750rpx;
+  height:100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.slider-box .slider-point-box{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider-box .slider-point-box .slider-point{
+  border-radius: 50%;
+  background: #000;
+}
+.color-box{
+  width:750rpx;
+  height:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap :wrap;
+  align-content: space-around;
+}
+.color-point{
+  width:60rpx;
+  height:60rpx;
+  margin: 20rpx 30rpx;
+  border-radius: 50%; 
+  box-shadow: 0 0 0 4rpx transparent;
+}
+.color-point:active{
+  box-shadow: 0 0 0 4rpx #fff;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  height: 0;
+  clear:both;
+  visibility: hidden;
+}
+
+.textWindow{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+  z-index: 99;
+}
+.textCancel,.textDone{
+  width: 100rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border:1px solid #ccc;
+  background: #f4f4f4;
+  border-radius: 8rpx;
+  position: absolute;
+  top:20rpx;
+  z-index: 9;
+}
+.textCancel{
+  left: 20rpx;
+}
+.textDone{
+  right: 20rpx;
+}
+.textShow{
+  position: absolute;
+  border-radius: 8rpx;
+  background: #f4f4f4;
+  line-height: 1.5;
+  box-sizing: border-box;
+}

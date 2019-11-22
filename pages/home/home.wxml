@@ -1,0 +1,6 @@
+<view class="imgList" wx:for="{{imgList}}" wx:key="index">
+ <image class="img" src="{{item}}" mode="widthFix"></image>
+ <view class="btnBox">
+  <button bindtap="editImg" data-src="{{item}}">点击编辑</button>
+ </view>
+</view>

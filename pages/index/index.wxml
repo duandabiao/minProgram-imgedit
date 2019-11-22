@@ -1,0 +1,16 @@
+<view class="imgList" wx:for="{{imgList}}" wx:key="index">
+ <image class="img" src="{{item}}" mode="widthFix"></image>
+ <view class="btnBox">
+  <button bindtap="editImg" data-src="{{item}}">点击编辑</button>
+  <button bindtap="downImg" data-src="{{item}}">点击保存</button>
+ </view>
+</view>
+
+<canvas
+  canvas-id='myCanvas'
+  class='myCanvas'
+  disable-scroll='false'
+  bindtouchstart='touchStart'
+  bindtouchmove='touchMove'
+  hidden="{{isHidden}}"
+></canvas>

@@ -1,0 +1,99 @@
+<view class="canvasBox">
+  <!-- 隐藏canvas 保存图片用 -->
+  <canvas canvas-id="tempCanvas" class="tempCanvas" disable-scroll="true" style="width:{{tempPosition.dWidth}}px;height:{{tempPosition.dHeight}}px;"></canvas>
+
+  <!-- 隐藏的input -->
+  <input class="hideInput" value="{{textValue}}" bindinput="inputChange" focus="{{inputFocus}}" ></input>
+   <!-- 涂鸦页面 -->
+  <view class="showCanvas">
+     <image src="{{imgUrl}}" disable-scroll="true" style="width:{{tempPosition.dWidth}}px;height:{{tempPosition.dHeight}}px;top:{{tempPosition.dy}}px;left:{{tempPosition.dx}}px"></image> 
+    <canvas class="myCanvas" canvas-id="myCanvas" disable-scroll="true" bindtouchstart="touchStart" bindtouchmove="touchMove" ></canvas>
+  </view>
+</view>
+
+<scroll-view class="tarbar" scroll-x="true">
+    <view class="tarbarBox">
+      <view class="tarbarItem" bindtap='choosePreview'>
+        <image src="/img/icon_5.png" mode="widthFix"></image>
+        <text>预览</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseLineWidth'>
+        <image src="/img/icon_1.png" mode="widthFix"></image>
+        <text>线宽</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseLineColor'>
+        <image src="/img/icon_2.png" mode="widthFix"></image>
+        <text>线颜色</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseAddText' style="background: {{isAddTextChoose?'rgba(200,200,200,0.5)':'transparent'}};">
+        <image src="/img/icon_6.png" mode="widthFix"></image>
+        <text>添加文字</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseFontSize'>
+        <image src="/img/icon_8.png" mode="widthFix"></image>
+        <text>文字大小</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseFontColor'>
+        <image src="/img/icon_2.png" mode="widthFix"></image>
+        <text>文字颜色</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseFontBold' style="background: {{isTextBoldChoose?'rgba(200,200,200,0.5)':'transparent'}};">
+        <image src="/img/icon_9.png" mode="widthFix"></image>
+        <text>粗体</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseFontItalic' style="background: {{isTextItalicChoose?'rgba(200,200,200,0.5)':'transparent'}};">
+        <image src="/img/icon_7.png" mode="widthFix"></image>
+        <text>斜体</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseEraser' style="background: {{isEraser?'rgba(200,200,200,0.5)':'transparent'}};">
+        <image src="/img/icon_3.png" mode="widthFix"></image>
+        <text>橡皮擦</text>
+      </view>
+      <view class="tarbarItem" bindtap='chooseClear'>
+        <image src="/img/icon_4.png" mode="widthFix"></image>
+        <text>清除</text>
+      </view>
+    </view>
+</scroll-view>
+
+
+
+
+<!-- 线宽的调控页面 -->
+<cover-view hidden="{{!isChooseWidth}}" class="toolbar-top toolbar-width">
+  <cover-view class="slider-box">
+    <cover-view wx:for="{{allLine}}" wx:key="i" class="slider-point-box" data-selected="{{item}}" bindtap="widthSliderChange">
+      <cover-view class="slider-point" style="width:{{item}}px;height:{{item}}px;"></cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+<!-- 颜色的调控页面 -->
+<cover-view hidden="{{!isChooseColor}}" class="toolbar-top">
+  <cover-view class="color-box">
+    <cover-view wx:for="{{allColor}}" wx:key="i" class="color-point" data-selected="{{item}}"style="background:{{item}}" bindtap='lineColorChange'></cover-view>
+    </cover-view>
+</cover-view>
+
+<!-- 字体大小的调控页面 -->
+<cover-view hidden="{{!isTextSizeChoose}}" class="toolbar-top toolbar-width">
+  <cover-view class="slider-box">
+    <cover-view wx:for="{{allTextFont}}" wx:key="i" class="slider-point-box" data-selected="{{item}}" bindtap="textSizeChange">
+      <cover-view>{{item==12?'小':item==16 ? '中' : '大'}}</cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+
+<!-- 文字颜色的调控页面 -->
+<cover-view hidden="{{!isTextColorChoose}}" class="toolbar-top">
+  <cover-view class="color-box">
+    <cover-view wx:for="{{allColor}}" wx:key="i" class="color-point" data-selected="{{item}}"style="background:{{item}}" bindtap='textColorChange'></cover-view>
+    </cover-view>
+</cover-view>
+
+<!-- 文字的弹出页面 -->
+<cover-view class="textWindow" hidden="{{!isAddTextChoose}}">
+  <cover-view class="textCancel" bindtap="textCancel">取消</cover-view>
+  <cover-view class="textDone" bindtap="textDone">完成</cover-view>
+  <cover-view class="textShow" style="color:{{textColor}};top:{{textPy}}px;left:{{textPx}}px;font-size:{{textSize}}px;font-weight:{{isTextBoldChoose?'bold':'normal'}};font-style:{{isTextItalicChoose?'italic':'normal'}};" bindtap="clickTextShow" bindtouchstart="textStart" bindtouchmove="textMove">{{textValue == '' ? '请输入内容' : textValue}}</cover-view>
+</cover-view>

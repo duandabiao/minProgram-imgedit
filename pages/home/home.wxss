@@ -1,0 +1,7 @@
+/* pages/home/home.wxss */
+image{
+  width: 100%;
+}
+.btnBox{
+  display: flex;
+}
